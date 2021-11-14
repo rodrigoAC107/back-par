@@ -23,7 +23,7 @@ class StoreFactory extends Factory
     {
         return [
             'type_store_id' => $this->faker->numberBetween($min = 1, $max = 10),
-            'location_id' => $this->faker->numberBetween($min = 1, $max = 10),
+            'location_id' => $this->faker->numberBetween($min = 2, $max = 11),
             'name' => $this->faker->word(),
             'address' => $this->faker->address(),
             'phone' => $this->faker->e164PhoneNumber(),
