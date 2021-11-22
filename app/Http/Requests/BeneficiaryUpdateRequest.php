@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\Beneficiary;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class BeneficiaryUpdateRequest extends FormRequest
 {
@@ -24,13 +25,12 @@ class BeneficiaryUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        $beneficiary = Beneficiary::findOrFail($this->id);
         return [
                 "location_id" => ['required'],
                 "dni" => ['required'],
                 "name" => ['required', 'max:50'],
                 "lastname" => ['required', 'max:50'],
-                "email" => ['required', 'email', 'unique:beneficiaries,email,' . $beneficiary->id],
+                "email" => ['required', 'email', 'unique:beneficiaries,email,' . $this->beneficiary->id],
                 "address" => ['nullable']
         ];
     }

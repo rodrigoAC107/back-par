@@ -10,9 +10,9 @@ class BeneficaryService
     /**
      * 
      */
-    public static function all()
+    public static function all($per_page)
     {
-        return Beneficiary::orderBy('id', 'DESC')->paginate(5);
+        return Beneficiary::orderBy('id', 'DESC')->paginate($per_page);
     }
     
     /**

@@ -18,7 +18,9 @@ class BeneficiaryController extends Controller
      */
     public function index(Request $request)
     {
-        $q = BeneficaryService::all();
+
+        $per_page = (int)$request->perPage;
+        $q = BeneficaryService::all($per_page);
         return BeneficiaryResource::collection($q);
     }
 
