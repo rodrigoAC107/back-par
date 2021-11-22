@@ -22,7 +22,7 @@ class BeneficiaryFactory extends Factory
     public function definition()
     {
         return [
-            'location_id' => $this->faker->numberBetween($min = 1, $max = 10),
+            'location_id' => $this->faker->numberBetween($min = 2, $max = 11),
             'dni' => $this->faker->numberBetween($min = 30000000, $max = 99999999),
             'name' => $this->faker->firstName(),
             'lastname' => $this->faker->lastName(),
