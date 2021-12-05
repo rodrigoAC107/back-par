@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStoreRequest;
 use App\Http\Requests\StoreUpdateRequest;
-use App\Http\Resources\StoreResource;
+use App\Http\Resources\StoreResourceStore;
+use App\Http\Resources\StoreResourceUpdate;
 use App\Models\Store;
 use App\Services\StoreService;
 use Illuminate\Http\Request;
@@ -16,9 +17,11 @@ class StoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return StoreResource::collection(StoreService::all());
+        $per_page = (int)$request->perPage;
+        $q = StoreService::all($per_page);
+        return StoreResourceStore::collection($q);
     }
 
     /**
@@ -33,7 +36,7 @@ class StoreController extends Controller
 
         $store = StoreService::store($validated);
 
-        return new StoreResource($store);
+        return new StoreResourceStore($store);
     }
 
     /**
@@ -44,7 +47,7 @@ class StoreController extends Controller
      */
     public function show(Store $store)
     {
-        return new StoreResource($store);
+        return new StoreResourceUpdate($store);
     }
 
     /**
@@ -60,7 +63,7 @@ class StoreController extends Controller
 
         $store = StoreService::update($validated, $store);
 
-        return new StoreResource($store);
+        return new StoreResourceUpdate($store);
     }
 
     /**

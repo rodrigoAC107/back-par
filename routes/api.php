@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\TypeStoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::apiResource('/beneficiary', BeneficiaryController::class);
     Route::apiResource('/product', ProductController::class);
     Route::apiResource('/store', StoreController::class);
+    Route::apiResource('/type-store', TypeStoreController::class)->only(['index', 'store', 'destroy']);
     Route::apiResource('/location', LocationController::class)->only(['index', 'store', 'destroy']);
     Route::apiResource('/province', ProvinceController::class)->only(['index', 'store', 'destroy']);
     Route::apiResource('/recipe', RecipeController::class);

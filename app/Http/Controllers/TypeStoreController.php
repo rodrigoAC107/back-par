@@ -14,7 +14,7 @@ class TypeStoreController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(['data' => TypeStore::all()]);
     }
 
     /**

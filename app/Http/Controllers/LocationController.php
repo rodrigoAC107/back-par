@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LocationRequest;
 use App\Http\Resources\LocationResource;
 use App\Models\Location;
+use App\Http\Services\LocationService;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -14,9 +15,10 @@ class LocationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return LocationResource::collection(Location::all());
+        $province_id = (int)$request->provinceId;
+        return LocationResource::collection(LocationService::all($province_id));
     }
 
     /**

@@ -10,9 +10,9 @@ class StoreService
     /**
      * 
      */
-    public static function all()
+    public static function all($per_page)
     {
-        return Store::all();
+        return Store::orderBy('id', 'DESC')->paginate($per_page);
     }
     
     /**
